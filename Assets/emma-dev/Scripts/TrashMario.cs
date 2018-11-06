@@ -8,12 +8,16 @@ public class TrashMario : MonoBehaviour {
 	public float moveSpeed = 10f;
 	//this variable remembers input and passes it to physics
 	private Vector3 inputVector;
-	private float verticalLook = 0f;
 	public float LookSpeed = 100f;
+	public static TrashMario itsame;
+	public int health = 3;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+
+		itsame = this;
+
 	}
 	
 	// Update is called once per frame
@@ -48,5 +52,19 @@ public class TrashMario : MonoBehaviour {
 	{
 		//override object's velocity with desired inputVector direction
 		GetComponent<Rigidbody>().velocity = inputVector * moveSpeed + Physics.gravity * 0.5f;
+	}
+
+	public void TakeDamage()
+	{
+		health--;
+		if (health <= 0)
+		{
+			Death();
+		}
+	}
+
+	public void Death()
+	{
+		
 	}
 }
